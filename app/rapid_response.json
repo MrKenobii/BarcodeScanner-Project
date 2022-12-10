@@ -1,0 +1,60 @@
+{
+    "product": {
+        "artist": null,
+        "attributes": {
+            "mpn": "9781911223139",
+            "size": "0.49 x 8 x 0.53",
+            "age_group": "adult"
+        },
+        "author": "Debbie Young",
+        "barcode_formats": {
+            "isbn_10": "1911223135",
+            "isbn_13": "9781911223139"
+        },
+        "brand": null,
+        "category": [
+            "Media",
+            "Books"
+        ],
+        "description": "When Sophie Sayers inherits a cottage in a sleepy English Cotswold village, she's hoping for a quieter life than the one she's running away from. What she gets instead is a dead body on a carnival float, and an extraordinary assortment of suspects. Is the enigmatic bookseller Hector Munro all he seems? And what about the over-friendly neighbour who brings her jars of honey? Not to mention the eccentric village shopkeeper, show committee, writers' group and drama club, all suspiciously keen to welcome her to their midst. For fans of cosy (cozy) mysteries everywhere, Best Murder in Show will make you laugh out loud at the idiosyncrasies of English country life, and rack your brains to discover the murderer before Sophie can. | Best Murder in Show Paperback | Indigo Chapters.",
+        "features": [],
+        "images": [
+            "https://images.barcodelookup.com/8559/85595691-1.jpg"
+        ],
+        "ingredients": null,
+        "manufacturer": null,
+        "online_stores": [
+            {
+                "name": "AbeBooks",
+                "price": "$4.49",
+                "url": "https://www.abebooks.com/Best-Murder-Show-Sophie-Sayers-Village/31119532161/bd"
+            },
+            {
+                "name": "BetterWorld.com - New, Used, Rare Books & Textbooks",
+                "price": "$6.98",
+                "url": "https://www.BetterWorldBooks.com/product/detail/Best-Murder-in-Show-9781911223139?utm_source=CJ_feed"
+            },
+            {
+                "name": "ThriftBooks.com",
+                "price": "$7.68",
+                "url": "https://www.thriftbooks.com/w/best-murder-in-show_debbie--young/18427996/#isbn=1911223135"
+            },
+            {
+                "name": "OnBuy.com",
+                "price": "£6.92",
+                "url": "https://www.onbuy.com/gb/best-murder-in-show-a-sophie-sayers-village-mystery-volume-1-sophie-sayers-village-mysteries~c8053~p4195805/?exta=cjunct&stat=eyJpcCI6IjYuOTIiLCJkcCI6MCwibGlkIjoiMTg5NjUyMjAiLCJzIjoiMyIsInQiOjE1ODQ4Nj"
+            },
+            {
+                "name": "OnBuy.com UK",
+                "price": "£8.16",
+                "url": "https://www.onbuy.com/gb/best-murder-in-show-a-sophie-sayers-village-mystery-volume-1-sophie-sayers-village-mysteries~c8053~p4195805/?exta=cjunct"
+            },
+            {
+                "name": "Barnes & Noble",
+                "price": "$9.99",
+                "url": "https://www.barnesandnoble.com/w/best-murder-in-show-debbie-young/1126164478?ean=9781911223139"
+            }
+        ],
+        "title": "Best Murder in Show"
+    }
+}

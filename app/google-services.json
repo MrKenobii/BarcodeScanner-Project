@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "799761899591",
+    "project_id": "barcodescanner-a8541",
+    "storage_bucket": "barcodescanner-a8541.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799761899591:android:96f00c2cc33d5a05db1162",
+        "android_client_info": {
+          "package_name": "com.anilduyguc.barcodescannerproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799761899591-q92c4jb894elhe7qv8sgs9q9hodec8nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMX07WWBiJ7FvSFeHpos_QmqnZdSYrEL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799761899591-q92c4jb894elhe7qv8sgs9q9hodec8nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799761899591:android:d8b2e34a8f31caacdb1162",
+        "android_client_info": {
+          "package_name": "com.anilduyguc.barcodscannerproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799761899591-q92c4jb894elhe7qv8sgs9q9hodec8nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMX07WWBiJ7FvSFeHpos_QmqnZdSYrEL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799761899591-q92c4jb894elhe7qv8sgs9q9hodec8nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
