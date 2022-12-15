@@ -129,6 +129,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> 
             intent.putExtra("imageUrl" , modelListFilter.get(position).getImageUrl());
             intent.putExtra("url" , modelListFilter.get(position).getUrl());
             intent.putExtra("isbnNo" , modelListFilter.get(position).getIsbnNo());
+            intent.putExtra("category", modelListFilter.get(position).getCategory());
             context.startActivity(intent);
 
         }

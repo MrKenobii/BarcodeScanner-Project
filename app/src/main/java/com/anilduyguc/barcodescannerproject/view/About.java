@@ -1,6 +1,7 @@
 package com.anilduyguc.barcodescannerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import com.anilduyguc.barcodescannerproject.MainActivity;
 import com.anilduyguc.barcodescannerproject.R;
 
 public class About extends AppCompatActivity {
-    private Button backButton;
+    private AppCompatButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

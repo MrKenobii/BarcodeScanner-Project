@@ -1,6 +1,7 @@
 package com.anilduyguc.barcodescannerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import com.anilduyguc.barcodescannerproject.adapter.SellerAdapter;
 import com.anilduyguc.barcodescannerproject.data.SellerData;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class SellerInfo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SellerAdapter adapter;
     private List<SellerData> modelList;
-    private Button backButton;
+    private AppCompatButton backButton;
     private CollectionReference books;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,8 @@ public class SellerInfo extends AppCompatActivity {
 
     private void readData(FireStoreCallBack fireStoreCallBack, Context applicationContext){
         books = firestore.collection("products");
-
-        books.get()
+        books.orderBy("title")
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
@@ -67,7 +69,8 @@ public class SellerInfo extends AppCompatActivity {
                                 String description = Objects.requireNonNull(document.getData().get("description")).toString();
                                 String author = Objects.requireNonNull(document.getData().get("author")).toString();
                                 String isbnNo = Objects.requireNonNull(document.getData().get("isbnNo")).toString();
-                                modelList.add(new SellerData(title, price, url, seller, imageUrl, description, author, isbnNo));
+                                String category = Objects.requireNonNull(document.getData().get("category")).toString();
+                                modelList.add(new SellerData(title, price, url, seller, imageUrl, description, author, isbnNo, category));
 //                                Log.d("Title", document.getId() + " => " + title);
 //                                Log.d("Seller", document.getId() + " => " + seller);
 //                                Log.d("Price", document.getId() + " => " + price);

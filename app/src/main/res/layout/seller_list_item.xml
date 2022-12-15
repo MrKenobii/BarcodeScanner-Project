@@ -10,7 +10,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#015095">
             <ImageView
                 android:id="@+id/productImageView"
                 android:layout_width="110dp"
@@ -36,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -45,6 +46,7 @@
                 android:textSize="15dp"
                 android:id="@+id/price"
                 android:text="Price"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -52,6 +54,7 @@
                 android:textSize="15dp"
                 android:id="@+id/url"
                 android:text="Url"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,12 +44,13 @@ public class ProductDetailsInfo extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String isbnNo = intent.getStringExtra("isbnNo");
         String imageUrl = intent.getStringExtra("imageUrl");
+        String category = intent.getStringExtra("category");
 
         titleTextView.setText(title);
         sellerTextView.setText("Seller: " +seller);
         authorTextView.setText("Author: " + author);
-        descriptionTextView.setText("Description\n" +description);
-        urlTextView.setText(url);
+        descriptionTextView.setText("\t\t\t" +description);
+        urlTextView.setText("Category: " + category);
         priceTextView.setText("$ " +price);
         isbnNoTextView.setText("ISBN No: " + isbnNo);
         Picasso.get().load(imageUrl).into(imageView);
@@ -57,7 +59,11 @@ public class ProductDetailsInfo extends AppCompatActivity {
             Log.d("In here", "Button Clicked");
             startActivity(new Intent(ProductDetailsInfo.this, SellerInfo.class));
         });
-        buyButton.setOnClickListener(v -> Log.d("In here", "Button Clicked"));
+        buyButton.setOnClickListener(v -> {
+            Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+            Intent intentUrl = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intentUrl);
+        });
 
     }
 }

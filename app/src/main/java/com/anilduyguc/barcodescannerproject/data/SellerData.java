@@ -9,10 +9,11 @@ public class SellerData {
     private String description;
     private String author;
     private String isbnNo;
+    private String category;
 
 
 
-    public SellerData(String title, double price, String url, String name, String imageUrl, String description, String author, String isbnNo) {
+    public SellerData(String title, double price, String url, String name, String imageUrl, String description, String author, String isbnNo, String category) {
         this.title = title;
         this.price = price;
         this.url = url;
@@ -21,6 +22,7 @@ public class SellerData {
         this.description = description;
         this.author = author;
         this.isbnNo = isbnNo;
+        this.category = category;
     }
 
 //    public SellerData(String title, double price, String url, String name) {
@@ -90,5 +92,13 @@ public class SellerData {
 
     public void setIsbnNo(String isbnNo) {
         this.isbnNo = isbnNo;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

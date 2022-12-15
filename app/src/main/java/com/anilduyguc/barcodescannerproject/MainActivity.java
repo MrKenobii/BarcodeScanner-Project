@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -46,9 +47,10 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity{
-    private Button scanButton;
-    private Button aboutButton;
-    private Button productListButton;
+    private static final String API_KEY="3g4tl8awaycfo0s5yrzrktb2ea65q3";
+    private AppCompatButton scanButton;
+    private AppCompatButton aboutButton;
+    private AppCompatButton productListButton;
     private FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,61 +89,13 @@ public class MainActivity extends AppCompatActivity{
 
 
                 RequestQueue queue = Volley.newRequestQueue(this);
+                Log.d("Barcode", result.getContents());
                 String rapidAPIUrl = "https://barcodes1.p.rapidapi.com/?query="+result.getContents(); // renews in 1 month 18 request left
-                String barcodeLookUpUrl = "https://api.barcodelookup.com/v3/products?barcode="+result.getContents()+"&key=g4wulvk4xbeos6bqh2nhd7gukebhec"; // Expires in 2 weeks 47 request left
-                //this.fetchApiFromBarcodeAPI(barcodeLookUpUrl, queue);
+                //String barcodeLookUpUrl = "https://api.barcodelookup.com/v3/products?barcode="+result.getContents()+"&key=g4wulvk4xbeos6bqh2nhd7gukebhec"; // Expires in 2 weeks 47 request left
+                String barcodeLookUpUrl = "https://api.barcodelookup.com/v3/products?barcode="+result.getContents()+"&key="+API_KEY; // Expires in 2 weeks 47 request left
+                this.fetchApiFromBarcodeAPI(barcodeLookUpUrl, queue);
                 //this.fetchApiRapidAPI(rapidAPIUrl, queue);
-
-                try {
-                    JSONObject body = new JSONObject(this.getJsonOfBarcodeLookUp());
-                    JSONArray products = body.getJSONArray("products");
-                    //Log.d("Products", String.valueOf(products));
-                    JSONObject main = products.getJSONObject(0);
-                    String barcodeNumber = main.getString("barcode_number");
-                    String title = main.getString("title");
-                    String category = main.getString("category");
-                    String description = main.getString("description");
-                    String images = main.getJSONArray("images").getString(0);
-                    JSONArray contributors = main.getJSONArray("contributors");
-                    String author = "";
-                    String publisher = "";
-                    for(int i = 0; i<contributors.length(); i++){
-                        JSONObject jsonObject = contributors.getJSONObject(i);
-                        if(jsonObject.getString("role").equals("author")){
-                            author = jsonObject.getString("name");
-                        }
-                        if(jsonObject.getString("role").equals("publisher")){
-                            publisher = jsonObject.getString("name");
-                        }
-                    }
-                    JSONArray stores = main.getJSONArray("stores");
-                    ArrayList<TempData> product = new ArrayList<>();
-                    for(int i =0; i< stores.length(); i++){
-                        JSONObject jsonObject = stores.getJSONObject(i);
-                        String sellerName = jsonObject.getString("name");
-                        String price = jsonObject.getString("price");
-                        String imageUrl = jsonObject.getString("link");
-                        product.add(new TempData(sellerName, Double.parseDouble(price), imageUrl));
-                    }
-
-                    Log.d("Barcode NO: ", barcodeNumber);
-                    Log.d("Title: ", title);
-                    Log.d("Category NO: ", category);
-                    Log.d("Description NO: ", description);
-                    Log.d("Images NO: ", images);
-                    Log.d("Author NO: ", author);
-                    Log.d("Publisher NO: ", publisher);
-                    for(int i =0; i< product.size(); i++){
-                        Log.d("Index of: "+ i + " -SellerName", product.get(i).getSellerName());
-                        Log.d("Index of: "+ i + " -Price", String.valueOf(product.get(i).getPrice()));
-                        Log.d("Index of: "+ i + " -ImageURl", product.get(i).getImageUrl());
-                    }
-                    this.addToFirebase(barcodeNumber, title, category, description, images, author, publisher, product);
-                    //Log.d("Main", String.valueOf(main));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                //this.getFromString();
 
             } else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_SHORT).show();
@@ -151,61 +105,111 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    private void getFromString() {
+        try {
+            JSONObject body = new JSONObject(this.getJsonOfBarcodeLookUp());
+            JSONArray products = body.getJSONArray("products");
+            //Log.d("Products", String.valueOf(products));
+            JSONObject main = products.getJSONObject(0);
+            String barcodeNumber = main.getString("barcode_number");
+            String title = main.getString("title");
+            String category = main.getString("category");
+            String description = main.getString("description");
+            String images = main.getJSONArray("images").getString(0);
+            JSONArray contributors = main.getJSONArray("contributors");
+            String author = "";
+            String publisher = "";
+            for(int i = 0; i<contributors.length(); i++){
+                JSONObject jsonObject = contributors.getJSONObject(i);
+                if(jsonObject.getString("role").equals("author")){
+                    author = jsonObject.getString("name");
+                }
+                if(jsonObject.getString("role").equals("publisher")){
+                    publisher = jsonObject.getString("name");
+                }
+            }
+            JSONArray stores = main.getJSONArray("stores");
+            ArrayList<TempData> product = new ArrayList<>();
+            for(int i =0; i< stores.length(); i++){
+                JSONObject jsonObject = stores.getJSONObject(i);
+                String sellerName = jsonObject.getString("name");
+                String price = jsonObject.getString("price");
+                String imageUrl = jsonObject.getString("link");
+                product.add(new TempData(sellerName, Double.parseDouble(price), imageUrl));
+            }
+
+            Log.d("Barcode NO: ", barcodeNumber);
+            Log.d("Title: ", title);
+            Log.d("Category NO: ", category);
+            Log.d("Description NO: ", description);
+            Log.d("Images NO: ", images);
+            Log.d("Author NO: ", author);
+            Log.d("Publisher NO: ", publisher);
+            for(int i =0; i< product.size(); i++){
+                Log.d("Index of: "+ i + " -SellerName", product.get(i).getSellerName());
+                Log.d("Index of: "+ i + " -Price", String.valueOf(product.get(i).getPrice()));
+                Log.d("Index of: "+ i + " -ImageURl", product.get(i).getImageUrl());
+            }
+            this.addToFirebase(barcodeNumber, title, category, description, images, author, publisher, product);
+            //Log.d("Main", String.valueOf(main));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void fetchApiRapidAPI(String rapidAPIUrl, RequestQueue queue) {
         // TO DO ---> change json Objects
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, rapidAPIUrl, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject body) {
-                Log.d("Response:", body.toString());
-                JSONArray products = null;
-                try {
-                    products = body.getJSONArray("products");
-                    JSONObject main = products.getJSONObject(0);
-                    String barcodeNumber = main.getString("barcode_number");
-                    String title = main.getString("title");
-                    String category = main.getString("category");
-                    String description = main.getString("description");
-                    String images = main.getJSONArray("images").getString(0);
-                    JSONArray contributors = main.getJSONArray("contributors");
-                    String author = "";
-                    String publisher = "";
-                    for(int i = 0; i<contributors.length(); i++){
-                        JSONObject jsonObject = contributors.getJSONObject(i);
-                        if(jsonObject.getString("role").equals("author")){
-                            author = jsonObject.getString("name");
-                        }
-                        if(jsonObject.getString("role").equals("publisher")){
-                            publisher = jsonObject.getString("name");
-                        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, rapidAPIUrl, null, body -> {
+            Log.d("Response:", body.toString());
+            JSONArray products = null;
+            try {
+                products = body.getJSONArray("products");
+                JSONObject main = products.getJSONObject(0);
+                String barcodeNumber = main.getString("barcode_number");
+                String title = main.getString("title");
+                String category = main.getString("category");
+                String description = main.getString("description");
+                String images = main.getJSONArray("images").getString(0);
+                JSONArray contributors = main.getJSONArray("contributors");
+                String author = "";
+                String publisher = "";
+                for(int i = 0; i<contributors.length(); i++){
+                    JSONObject jsonObject = contributors.getJSONObject(i);
+                    if(jsonObject.getString("role").equals("author")){
+                        author = jsonObject.getString("name");
                     }
-                    JSONArray stores = main.getJSONArray("stores");
-                    ArrayList<TempData> product = new ArrayList<>();
-                    for(int i =0; i< stores.length(); i++){
-                        JSONObject jsonObject = stores.getJSONObject(i);
-                        String sellerName = jsonObject.getString("name");
-                        String price = jsonObject.getString("price");
-                        String imageUrl = jsonObject.getString("link");
-                        product.add(new TempData(sellerName, Double.parseDouble(price), imageUrl));
+                    if(jsonObject.getString("role").equals("publisher")){
+                        publisher = jsonObject.getString("name");
                     }
-
-                    Log.d("Barcode NO: ", barcodeNumber);
-                    Log.d("Title: ", title);
-                    Log.d("Category NO: ", category);
-                    Log.d("Description NO: ", description);
-                    Log.d("Images NO: ", images);
-                    Log.d("Author NO: ", author);
-                    Log.d("Publisher NO: ", publisher);
-                    for(int i =0; i< product.size(); i++){
-                        Log.d("Index of: "+ i + " -SellerName", product.get(i).getSellerName());
-                        Log.d("Index of: "+ i + " -Price", String.valueOf(product.get(i).getPrice()));
-                        Log.d("Index of: "+ i + " -ImageURl", product.get(i).getImageUrl());
-                    }
-                    addToFirebase(barcodeNumber, title, category, description, images, author, publisher, product);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-                //Log.d("Products", String.valueOf(products));
+                JSONArray stores = main.getJSONArray("stores");
+                ArrayList<TempData> product = new ArrayList<>();
+                for(int i =0; i< stores.length(); i++){
+                    JSONObject jsonObject = stores.getJSONObject(i);
+                    String sellerName = jsonObject.getString("name");
+                    String price = jsonObject.getString("price");
+                    String imageUrl = jsonObject.getString("link");
+                    product.add(new TempData(sellerName, Double.parseDouble(price), imageUrl));
+                }
+
+                Log.d("Barcode NO: ", barcodeNumber);
+                Log.d("Title: ", title);
+                Log.d("Category NO: ", category);
+                Log.d("Description NO: ", description);
+                Log.d("Images NO: ", images);
+                Log.d("Author NO: ", author);
+                Log.d("Publisher NO: ", publisher);
+                for(int i =0; i< product.size(); i++){
+                    Log.d("Index of: "+ i + " -SellerName", product.get(i).getSellerName());
+                    Log.d("Index of: "+ i + " -Price", String.valueOf(product.get(i).getPrice()));
+                    Log.d("Index of: "+ i + " -ImageURl", product.get(i).getImageUrl());
+                }
+                addToFirebase(barcodeNumber, title, category, description, images, author, publisher, product);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            //Log.d("Products", String.valueOf(products));
         }, error -> error.printStackTrace()){
             @Override
             public Map getHeaders() throws AuthFailureError {

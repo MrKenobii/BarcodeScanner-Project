@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProductDetailsInfo">
+    tools:context=".view.ProductDetailsInfo"
+    android:background="@color/black_shade_1">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButtonB"
         android:layout_width="84dp"
         android:layout_height="62dp"
         android:text="Back"
+        android:background="@drawable/back_button"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,17 +26,20 @@
         android:layout_width="416dp"
         android:layout_height="130dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.968">
 
         <TextView
             android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="59dp"
-            android:textColor="@color/black"
-            android:text="BEST MURDDER"
-            android:textSize="25sp"
-            android:textAlignment="center"
             android:gravity="center"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,32 +52,41 @@
             android:layout_marginBottom="4dp"
             android:gravity="center"
             android:text="Price"
-            android:textColor="#CD0A0A"
-            android:textSize="20sp"
+            android:textColor="#F35C5C"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buyButtonB"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTV"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buyButtonB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/buy_button"
             android:text="Buy"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.951"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTV"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.826" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="411dp"
         android:layout_height="152dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionTV"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/labelTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -87,11 +102,12 @@
 
         <TextView
             android:id="@+id/sellerTV"
-            android:layout_width="235dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Seller: "
-            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -99,50 +115,73 @@
 
         <TextView
             android:id="@+id/isbnNoTV"
-            android:layout_width="235dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Isbn No: "
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/black"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/urlTV"
+            app:layout_constraintTop_toBottomOf="@+id/sellerTV"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/urlTV"
-            android:layout_width="235dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="8dp"
             android:text="Url:"
-            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/sellerTV" />
+            app:layout_constraintTop_toBottomOf="@+id/isbnNoTV" />
 
         <TextView
             android:id="@+id/authorTV"
-            android:layout_width="235dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Author: "
-            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/labelTV"
+        android:layout_width="414dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="348dp"
+        android:text="DESCRIPTION"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/descriptionTV"
         android:layout_width="match_parent"
-        android:layout_height="385dp"
-        android:text="sadfdsf"
+        android:layout_height="343dp"
+        android:layout_marginTop="2dp"
+        android:text="Text2"
+        android:padding="10dp"
+        android:textStyle="italic"
+        android:textColor="@color/white"
         android:textSize="15sp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTV" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
