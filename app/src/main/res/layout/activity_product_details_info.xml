@@ -129,17 +129,30 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/urlTV"
+            android:id="@+id/categoryTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Url:"
+            android:text="Category:"
             android:layout_marginStart="10dp"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/isbnNoTV" />
+
+        <TextView
+            android:id="@+id/publisherTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Publisher:"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/categoryTV" />
 
         <TextView
             android:id="@+id/authorTV"
@@ -173,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="343dp"
         android:layout_marginTop="2dp"
-        android:text="Text2"
+        android:text="Description"
         android:padding="10dp"
         android:textStyle="italic"
         android:textColor="@color/white"

@@ -33,13 +33,13 @@ import java.util.List;
 
 public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> implements Filterable {
     Context context;
-    List<SellerData> modelList ;
-    List<SellerData> modelListFilter ;
+    List<SellerData> modelList;
+    List<SellerData> modelListFilter;
 
     public SellerAdapter(Context context, List<SellerData> modelList) {
         this.context = context;
         this.modelList = modelList;
-        this.modelListFilter = modelList ;
+        this.modelListFilter = modelList;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> 
             protected FilterResults performFiltering(CharSequence constraint) {
                 String character = constraint.toString();
                 if (character.isEmpty()){
-                    modelListFilter = modelList ;
+                    modelListFilter = modelList;
                 }else {
                     List<SellerData> filterList = new ArrayList<>();
                     for (SellerData row: modelList){
@@ -96,17 +96,17 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> 
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                modelListFilter = (ArrayList<SellerData>) results.values ;
+                modelListFilter = (ArrayList<SellerData>) results.values;
                 notifyDataSetChanged();
             }
         };
     }
 
 
-    class MyHolder extends RecyclerView.ViewHolder  implements  View.OnClickListener{
+    public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView url, title, price ;
-        ImageView imageView;
+        private TextView url, title, price;
+        private ImageView imageView;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.productImageView);
@@ -119,7 +119,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            Toast.makeText(context, "position"+position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Position: "+position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context , ProductDetailsInfo.class);
             intent.putExtra("title" , modelListFilter.get(position).getTitle());
             intent.putExtra("price" , String.valueOf(modelListFilter.get(position).getPrice()));
@@ -130,6 +130,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.MyHolder> 
             intent.putExtra("url" , modelListFilter.get(position).getUrl());
             intent.putExtra("isbnNo" , modelListFilter.get(position).getIsbnNo());
             intent.putExtra("category", modelListFilter.get(position).getCategory());
+            intent.putExtra("publisher", modelListFilter.get(position).getPublisher());
             context.startActivity(intent);
 
         }

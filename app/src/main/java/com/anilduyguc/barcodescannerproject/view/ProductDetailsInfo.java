@@ -17,7 +17,7 @@ import com.anilduyguc.barcodescannerproject.R;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetailsInfo extends AppCompatActivity {
-    private TextView titleTextView, sellerTextView, authorTextView, descriptionTextView,  urlTextView, priceTextView, isbnNoTextView;
+    private TextView titleTextView, sellerTextView, authorTextView, descriptionTextView,  categoryTextView, priceTextView, isbnNoTextView, publisherTextView;
     private Button backButton, buyButton;
     private ImageView imageView;
     @Override
@@ -30,7 +30,8 @@ public class ProductDetailsInfo extends AppCompatActivity {
         sellerTextView = findViewById(R.id.sellerTV);
         authorTextView = findViewById(R.id.authorTV);
         descriptionTextView = findViewById(R.id.descriptionTV);
-        urlTextView = findViewById(R.id.urlTV);
+        categoryTextView = findViewById(R.id.categoryTV);
+        publisherTextView = findViewById(R.id.publisherTV);
         priceTextView = findViewById(R.id.priceTV);
         isbnNoTextView = findViewById(R.id.isbnNoTV);
         imageView = findViewById(R.id.imageView2);
@@ -45,14 +46,16 @@ public class ProductDetailsInfo extends AppCompatActivity {
         String isbnNo = intent.getStringExtra("isbnNo");
         String imageUrl = intent.getStringExtra("imageUrl");
         String category = intent.getStringExtra("category");
+        String publisher = intent.getStringExtra("publisher");
 
         titleTextView.setText(title);
         sellerTextView.setText("Seller: " +seller);
         authorTextView.setText("Author: " + author);
         descriptionTextView.setText("\t\t\t" +description);
-        urlTextView.setText("Category: " + category);
+        categoryTextView.setText("Category: " + category);
         priceTextView.setText("$ " +price);
         isbnNoTextView.setText("ISBN No: " + isbnNo);
+        publisherTextView.setText("Publisher: " + publisher);
         Picasso.get().load(imageUrl).into(imageView);
 
         backButton.setOnClickListener(v -> {
@@ -60,7 +63,7 @@ public class ProductDetailsInfo extends AppCompatActivity {
             startActivity(new Intent(ProductDetailsInfo.this, SellerInfo.class));
         });
         buyButton.setOnClickListener(v -> {
-            Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+            Uri uri = Uri.parse(url);
             Intent intentUrl = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intentUrl);
         });

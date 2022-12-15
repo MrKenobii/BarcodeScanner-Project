@@ -17,8 +17,6 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {
-            startActivity(new Intent(About.this, MainActivity.class));
-        });
+        backButton.setOnClickListener(v -> startActivity(new Intent(About.this, MainActivity.class)));
     }
 }

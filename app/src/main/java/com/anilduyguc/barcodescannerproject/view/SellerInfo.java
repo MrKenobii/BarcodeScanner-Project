@@ -55,7 +55,7 @@ public class SellerInfo extends AppCompatActivity {
 
     private void readData(FireStoreCallBack fireStoreCallBack, Context applicationContext){
         books = firestore.collection("products");
-        books.orderBy("title")
+        books.orderBy("title", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -70,7 +70,8 @@ public class SellerInfo extends AppCompatActivity {
                                 String author = Objects.requireNonNull(document.getData().get("author")).toString();
                                 String isbnNo = Objects.requireNonNull(document.getData().get("isbnNo")).toString();
                                 String category = Objects.requireNonNull(document.getData().get("category")).toString();
-                                modelList.add(new SellerData(title, price, url, seller, imageUrl, description, author, isbnNo, category));
+                                String publisher = Objects.requireNonNull(document.getData().get("publisher")).toString();
+                                modelList.add(new SellerData(title, price, url, seller, imageUrl, description, author, isbnNo, category, publisher));
 //                                Log.d("Title", document.getId() + " => " + title);
 //                                Log.d("Seller", document.getId() + " => " + seller);
 //                                Log.d("Price", document.getId() + " => " + price);
