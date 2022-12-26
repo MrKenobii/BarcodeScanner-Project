@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
             if(result.getContents() != null){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Result:"+result.getContents());
-
+                Toast.makeText(this, "Barcode No:" + result.getContents(), Toast.LENGTH_SHORT).show();
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 Log.d("Barcode", result.getContents());
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity{
             products.put("publisher", publisher);
 
             firestore.collection("products").add(products)
-                    .addOnSuccessListener(documentReference -> Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show())
+                    .addOnSuccessListener(documentReference -> Toast.makeText(MainActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_SHORT).show());
         }
     }
