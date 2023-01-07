@@ -47,7 +47,7 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity{
-    private static final String API_KEY="3g4tl8awaycfo0s5yrzrktb2ea65q3";
+    private static final String API_KEY="3b434811dcc44355a1f180651230601";
     private AppCompatButton scanButton;
     private AppCompatButton aboutButton;
     private AppCompatButton productListButton;
